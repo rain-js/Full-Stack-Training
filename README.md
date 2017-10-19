@@ -34,6 +34,24 @@
 
 - 字符串
 
+	- 模板字符串
+	
+	    把多个字符串连接起来，可以用 + 号连接：
+    	``` JavaScript
+    	var name = 'rain';
+    	var age = 18;
+    	var message = 'Hello, I am ' + name + '. I am ' + age + ' years old.';
+    	console.log(message);
+    	```
+    	ES6新增了一种模板字符串
+    	``` JavaScript
+    	var name = 'rain';
+    	var age = 18;
+    	var message = `Hello, I am ${name}. I am ${age} years old`;
+    	console.log(message);
+    	```
+
+
 - 数组
 
 - 对象
