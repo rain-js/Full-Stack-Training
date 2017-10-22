@@ -22,36 +22,59 @@
 	
 	在JavaScript中，同一个变量可以反复赋值，而且可以是不同类型的变量。这种变量本身类型不固定的语言称之为动态语言。
 	
-	``` JavaScript
-	var a = 123;
-	a = 'ABC';
-	```
+``` JavaScript
+var a = 123;
+a = 'ABC';
+```
 	静态语言在定义变量时必须指定变量类型，如果赋值的时候类型不匹配，就会报错。例如Java是静态语言。
-	``` Java
-	int a = 123;
-	a = 'ABC'	// 错误：不能把字符串赋给整形变量
-	```
+``` Java
+int a = 123;
+a = 'ABC'	// 错误：不能把字符串赋给整形变量
+```
 
 ##### 1.3 字符串
 
-	- 模板字符串
+###### 1.3.1 模板字符串
 	
-	    把多个字符串连接起来，可以用 + 号连接：
-    	``` JavaScript
-    	var name = 'rain';
-    	var age = 18;
-    	var message = 'Hello, I am ' + name + '. I am ' + age + ' years old.';
-    	console.log(message);
-    	```
-    	ES6新增了一种模板字符串
-    	``` JavaScript
-    	var name = 'rain';
-    	var age = 18;
-    	var message = `Hello, I am ${name}. I am ${age} years old`;
-    	console.log(message);
-    	```
-
-
+	把多个字符串连接起来，可以用 + 号连接：
+``` JavaScript
+var name = 'rain';
+var age = 18;
+var message = 'Hello, I am ' + name + '. I am ' + age + ' years old.';
+console.log(message);
+```
+    ES6新增了一种模板字符串：
+``` JavaScript
+var name = 'rain';
+var age = 18;
+var message = `Hello, I am ${name}. I am ${age} years old`;
+console.log(message);
+```
+###### 1.3.2 字符串常用方法
+**toUpperCase()**
+``` JavaScript
+var str = 'Hello';
+str.toUpperCase();	// 'HELLO'
+``` 
+**toLowerCase()**
+``` JavaScript
+var str = 'Hello';
+str.toLowerCase();	// 'hello'
+``` 
+**indexOf()**
+``` JavaScript
+var str = 'hello, world';
+str.indexOf('world');		// 7
+str.indexOf('World');		// 没有找到指定的子串，返回 -1
+``` 
+**substring()**
+``` JavaScript
+var str = 'hello, world';
+str.substring(0, 5);		// 从索引0开始到5（不包括5），返回'hello'
+str.substring(7);			// 从索引7开始到结束，返回'world'
+``` 
+	Note: 调用这些方法本身不会改变原有字符串的内容，而是返回一个新字符串
+	
 ##### 1.4 数组
 
 ##### 1.5 对象
