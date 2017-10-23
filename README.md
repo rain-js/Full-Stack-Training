@@ -193,6 +193,34 @@ if () {
 }
 ```
 ##### 1.7 循环
+**for...in**
+> for...in 把一个对象的所有属性依次循环出来
+
+``` JavaScript
+var o = {
+    name: 'rain',
+    age: 18,
+    city: 'shenzhen'
+};
+for (var key in o) {
+    console.log(key);   // 'name' 'age' 'city'
+}
+```
+
+> 要过滤掉对象继承的属性，用hasOwnProperty()来实现：
+
+``` JavaScript
+var o = {
+    name: 'rain',
+    age: 18,
+    city: 'shenzhen'
+};
+for (var key in o) {
+    if (o.hasOwnProperty(key)) {
+        console.log(key);   // 'name' 'age' 'city'
+    }
+}
+```
 
 ##### 1.8 Map和Set
 
