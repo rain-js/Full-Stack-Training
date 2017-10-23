@@ -223,5 +223,11 @@ for (var key in o) {
 ```
 
 ##### 1.8 Map和Set
+**Map**
+> Map是一组键值对的结构，具有极快的查找速度。
 
+**Set**
+> Set和Map类似，也是一组key的集合，但不存储value。由于key不能重复，所以，在Set中，没有重复的key。
+
+Note: Map和Set是ES6标准新增的数据类型。
 ##### 1.9 iterable
