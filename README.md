@@ -541,7 +541,45 @@ arr.reduce(function (x, y) {
 ```
 
 **filter**
+> filter()把传入的函数依次作用于每个元素，然后根据返回值是true还是false决定保留还是丢弃该元素。
 
+> 把一个Array中的空字符串删掉
+
+``` JavaScript
+var arr = ['A', '', 'B', null, undefined, 'C', '  '];
+var r = arr.filter(function (s) {
+    return s && s.trim();   // 注意：IE9以下的版本没有trim()方法
+});
+r;                          // ['A', 'B', 'C']
+```
+
+> filter()接收的回调函数，其实可以有多个参数。通常我们仅使用第一个参数，表示Array的某个元素。回调函数还可以接收另外两个参数，表示元素的位置和数组本身：
+
+``` JavaScript
+var arr = ['A', 'B', 'C'];
+var r = arr.filter(function (element, index, self) {
+    console.log(element);   // 依次打印'A', 'B', 'C'
+    console.log(index);     // 依次打印0, 1, 2
+    console.log(self);      // self就是变量arr
+    return true;
+});
+```
+
+> 利用filter，可以巧妙地去除Array的重复元素：
+
+``` JavaScript
+'use strict';
+
+var r,
+    arr = ['apple', 'strawberry', 'banana', 'pear', 'apple', 'orange', 'orange', 'strawberry'];
+    
+    r = arr.filter(function (element, index, self) {
+    return self.indexOf(element) === index;
+    
+    console.log(r.toString());
+});
+
+```
 **sort**
 
 #### 2.5 闭包
