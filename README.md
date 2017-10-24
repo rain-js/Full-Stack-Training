@@ -353,6 +353,58 @@ function foo() {
 ```
 
 #### 2.2 变量作用域
+**变量提升**
+> JavaScript的函数定义有个特点，它会先扫描整个函数体的语句，把所有申明的变量“提升”到函数顶部。
+
+**全局作用域**
+> 不在任何函数内定义的变量就具有全局作用域。实际上，JavaScript默认有一个全局对象window，全局作用域的变量实际上被绑定到window的一个属性。
+
+> JavaScript实际上只有一个全局作用域。任何变量（函数也视为变量），如果没有在当前函数作用域中找到，就会继续往上查找，最后如果在全局作用域中也没有找到，则报ReferenceError错误。
+
+**名字空间**
+> 全局变量会绑定到window上，不同的JavaScript文件如果使用了相同的全局变量，或者定义了相同名字的顶层函数，都会造成命名冲突，并且很难被发现。
+
+> 减少冲突的一个方法是把自己的所有变量和函数全部绑定到一个全局变量中。许多著名的JavaScript库都是这么干的：jQuery，YUI，underscore等等。例如：
+
+``` JavaScript
+// 唯一的全局变量MYAPP:
+var MYAPP = {};
+
+// 其他变量:
+MYAPP.name = 'myapp';
+MYAPP.version = 1.0;
+
+// 其他函数:
+MYAPP.foo = function () {
+    return 'foo';
+};
+```
+
+**局部作用域**
+> 为了解决块级作用域，ES6引入了新的关键字let，用let替代var可以申明一个块级作用域的变量。
+
+``` JavaScript
+'use strict';
+
+function foo() {
+    var sum = 0;
+    for (let i=0; i<100; i++) {
+        sum += i;
+    }
+    i += 1; // SyntaxError
+}
+```
+
+**常量**
+> ES6标准引入了新的关键字const来定义常量，const与let都具有块级作用域：
+
+``` JavaScript
+'use strict';
+
+const PI = 3.14;
+PI = 3; // 某些浏览器不报错，但是无效果！
+PI;     // 3.14
+```
 
 #### 2.3 方法
 
