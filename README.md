@@ -407,6 +407,101 @@ PI;     // 3.14
 ```
 
 #### 2.3 方法
+> 在一个对象中绑定函数，称为这个对象的方法。
+
+``` JavaScript
+function getAge() {
+    var y = new Date().getFullYear();
+    return y - this.birth;
+}
+
+var o = {
+    name: 'rain',
+    birth: 1992,
+    age: getAge
+};
+
+o.age();    // 25, 正常结果
+getAge();   // NaN
+```
+> 如果以对象的方法形式调用，比如o.age()，该函数的this指向被调用的对象，也就是o，这是符合我们预期的。
+如果单独调用函数，比如getAge()，此时，该函数的this指向全局对象，也就是window。
+
+> 由于这是一个巨大的设计错误，要想纠正可没那么简单。ECMA决定，在strict模式下让函数的this指向undefined。
+这个决定只是让错误及时暴露出来，并没有解决this应该指向的正确位置。
+
+``` JavaScript
+'use strict';
+
+var o = {
+    name: 'rain',
+    birth: 1992,
+    age: function () {
+        function getAgeFromBirth() {
+            var y = new Date().getFullYear();
+            return y - this.birth;
+        }
+        return getAgeFromBirth();
+    }
+};
+
+o.age(); // Uncaught TypeError: Cannot read property 'birth' of undefined
+```
+> this指针只在age方法的函数内指向o，在函数内部定义的函数，this又指向undefined了！（在非strict模式下，它重新指向全局对象window！）
+
+**修复的办法 var that = this**
+``` JavaScript
+'use strict';
+
+var o = {
+    name: 'rain',
+    birth: 1992,
+    age: function () {
+        var that = this;            // 在方法内部一开始就捕获this
+        function getAgeFromBirth() {
+            var y = new Date().getFullYear();
+            return y - that.birth;  // 用that而不是this
+        }
+        return getAgeFromBirth();
+    }
+};
+```
+
+**apply & call**
+``` JavaScript
+function getAge() {
+    var y = new Date().getFullYear();
+    return y - this.birth;
+}
+
+var o = {
+    name: 'rain',
+    birth: 1992,
+    age: getAge
+};
+
+o.age();    // 25
+getAge.apply(o, []);   // 25
+```
+
+**装饰器**
+> 利用apply()，我们还可以动态改变函数的行为。JavaScript的所有对象都是动态的，即使内置的函数，我们也可以重新指向新的函数。
+
+``` JavaScript
+var count = 0;
+var oldParseInt = parseInt; // 保存原函数
+
+window.parseInt = function () {
+    count += 1;
+    return oldParseInt.apply(null, arguments); // 调用原函数
+};
+
+// 测试:
+parseInt('10');
+parseInt('20');
+parseInt('30');
+count; // 3
+```
 
 #### 2.4 高阶函数
 **map/reduce**
