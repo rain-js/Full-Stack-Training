@@ -504,7 +504,41 @@ count; // 3
 ```
 
 #### 2.4 高阶函数
-**map/reduce**
+> JavaScript的函数其实都指向某个变量。既然变量可以指向函数，函数的参数能接收变量，那么一个函数就可以接收另一个函数作为参数，这种函数就称之为高阶函数。
+
+``` JavaScript
+function add(x, y, f) {
+    return f(x) + f(y);
+}
+add(-5, 6, Math.abs)
+```
+**map**
+``` JavaScript
+function pow(x) {
+    return x * x;
+}
+
+var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+arr.map(pow); // [1, 4, 9, 16, 25, 36, 49, 64, 81]
+```
+> 把Array的所有数字转为字符串:
+
+``` JavaScript
+var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+arr.map(String); // ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+```
+
+**reduce**
+> 这个函数必须接收两个参数，reduce()把结果继续和序列的下一个元素做累积计算，其效果就是：
+
+> [x1, x2, x3, x4].reduce(f) = f(f(f(x1, x2), x3), x4)
+
+``` JavaScript
+var arr = [1, 3, 5, 7, 9];
+arr.reduce(function (x, y) {
+    return x + y;
+}); // 25
+```
 
 **filter**
 
