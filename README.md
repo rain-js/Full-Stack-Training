@@ -280,3 +280,118 @@ a.forEach(function (element, index, array) {
     console.log(element);
 });
 ```
+
+### 2 函数
+> JavaScript的函数不但是“头等公民”，而且可以像变量一样使用，具有非常强大的抽象能力。
+
+#### 2.1 函数定义和调用
+> 函数体内部的语句在执行时，一旦执行到return时，函数就执行完毕，并将结果返回。如果没有return语句，函数执行完毕后也会返回结果，只是结果为undefined。
+
+**arguments**
+``` JavaScript
+// foo(a[, b], c)
+// 接收2~3个参数，b是可选参数，如果只传2个参数，b默认为null
+
+function foo(a, b, c) {
+    if (arguments.length === 2) {
+        // 实际拿到的参数是a和b，c为undefined
+        c = b;      // 把b赋给c
+        b = null;   // b变为默认值
+    }
+    // ...
+}
+```
+
+**...rest参数**
+> rest参数只能写在最后，前面用...标识
+
+``` JavaScript
+function foo(a, b, ...rest) {
+    console.log('a = ' + a);
+    console.log('b = ' + b);
+    console.log(rest);
+}
+
+foo(1, 2, 3, 4, 5);
+// 结果:
+// a = 1
+// b = 2
+// Array [ 3, 4, 5 ]
+
+foo(1);
+// 结果:
+// a = 1
+// b = undefined
+// Array []
+```
+
+**return语句的一个大坑**
+``` JavaScript
+function foo() {
+    return
+        { name: 'foo' };
+}
+
+foo(); // undefined
+```
+> 由于JavaScript引擎在行末自动添加分号的机制，上面的代码实际上变成了：
+
+``` JavaScript
+function foo() {
+    return;                 // 自动添加了分号，相当于return undefined;
+        { name: 'foo' };    // 这行语句已经没法执行到了
+}
+```
+> 正确的多行写法是：
+
+``` JavaScript
+function foo() {
+    return {         // 这里不会自动加分号，因为{表示语句尚未结束
+        name: 'foo'
+    };
+}
+```
+
+#### 2.2 变量作用域
+
+#### 2.3 方法
+
+#### 2.4 高阶函数
+**map/reduce**
+
+**filter**
+
+**sort**
+
+#### 2.5 闭包
+
+#### 2.6 箭头函数
+
+#### 2.7 generator
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
