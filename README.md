@@ -742,6 +742,24 @@ for (var x of fib(5)) {
 - 函数内部判断某个变量是否存在用typeof myVar === 'undefined'。
 
 #### 3.1 Date
+1. 要获取系统当前时间，用：
+``` JavaScript
+var now = new Date();
+now;                // Wed Oct 25 2017 23:31:24 GMT+0800 (中国标准时间)
+now.getFullYear();  // 2017, 年份
+now.getMonth();     // 9, 月份，注意月份范围是0~11，9表示十月
+now.getDate();      // 25, 表示25号
+now.getDay();       // 3, 表示星期三
+now.getHours();     // 23, 24小时制
+now.getMinutes();   // 31, 分钟
+now.getSeconds();   // 24, 秒
+now.getMilliseconds(); // 254, 毫秒数
+now.getTime();      // 1508945484254, 以number形式表示的时间戳
+```
+注意，当前时间是浏览器从本机操作系统获取的时间，所以不一定准确，因为用户可以把当前时间设定为任何值。
+
+---
+
 
 #### 3.2 RegExp
 
