@@ -687,9 +687,47 @@ a.bar()  //undefined
 3. 如开头所述，箭头函数最吸引人的地方是简洁。在有多层函数嵌套的情况下，箭头函数的简洁性并没有很大的提升，反而影响了函数的作用范围的识别度，这种情况不建议使用箭头函数。
 
 #### 2.7 generator
+> generator和函数不同的是，generator由function\*定义（注意多出的\*号），并且，除了return语句，还可以用yield返回多次。
 
+> 以一个著名的斐波那契数列为例，它由0，1开头：0 1 1 2 3 5 8 13 21 34 ...
 
+``` JavaScript
+function* fib(max) {
+    var
+        t,
+        a = 0,
+        b = 1,
+        n = 1;
+    while (n < max) {
+        yield a;
+        t = a + b;
+        a = b;
+        b = t;
+        n ++;
+    }
+    return a;
+}
 
+fib(5); // fib {[[GeneratorStatus]]: "suspended", [[GeneratorReceiver]]: Window}
+```
+> 直接调用一个generator和调用函数不一样，fib(5)仅仅是创建了一个generator对象，还没有去执行它。
+
+1. 调用generator对象有两个方法，一是不断地调用generator对象的next()方法：
+
+``` JavaScript
+var f = fib(5);
+f.next(); // {value: 0, done: false}
+f.next(); // {value: 1, done: false}
+f.next(); // {value: 1, done: false}
+f.next(); // {value: 2, done: false}
+f.next(); // {value: 3, done: true}
+```
+2. 第二个方法是直接用for ... of循环迭代generator对象，这种方式不需要我们自己判断done
+``` JavaScript
+for (var x of fib(5)) {
+    console.log(x); // 依次输出0, 1, 1, 2, 3
+}
+```
 
 
 
