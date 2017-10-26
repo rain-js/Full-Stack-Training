@@ -784,6 +784,78 @@ if (Date.now) {
 ```
 
 #### 3.2 RegExp
+> 正则表达式是一种用来匹配字符串的强有力的武器。它的设计思想是用一种描述性的语言来给字符串定义一个规则，凡是符合规则的字符串，我们就认为它“匹配”了，否则，该字符串就是不合法的。
+
+---
+1. 在正则表达式中，如果直接给出字符，就是精确匹配。用\d可以匹配一个数字，\w可以匹配一个字母或数字，所以：
+- '00\d'可以匹配'007'，但无法匹配'00A'；
+- '\d\d\d'可以匹配'010'；
+- '\w\w'可以匹配'js'；
+---
+2. \d{3}\s+\d{3,8}
+> 该正则表达式可以匹配以任意个空格隔开的带区号的电话号码。
+
+- \d{3}表示匹配3个数字，例如'010'；
+- \s可以匹配一个空格（也包括Tab等空白符），所以\s+表示至少有一个空格，例如匹配' '，'\t\t'等；
+- \d{3,8}表示3-8个数字，例如'1234567'。
+
+3. 在JavaScript中使用正则表达式
+- 第一种方式是直接通过/正则表达式/写出来，第二种方式是通过new RegExp('正则表达式')创建一个RegExp对象。
+
+``` JavaScript
+var re1 = /ABC\-001/;
+var re2 = new RegExp('ABC\\-001');
+
+re1; // /ABC\-001/
+re2; // /ABC\-001/
+```
+- RegExp对象的test()方法用于测试给定的字符串是否符合条件。
+
+``` JavaScript
+var re = /^\d{3}\-\d{3,8}$/;
+re.test('010-12345'); // true
+re.test('010-1234x'); // false
+re.test('010 12345'); // false
+```
+- 切分字符串
+``` JavaScript
+'a b   c'.split(' '); // ['a', 'b', '', '', 'c']
+
+'a b   c'.split(/\s+/); // ['a', 'b', 'c']
+```
+
+- 提取子串
+> 如果正则表达式中定义了组，就可以在RegExp对象上用exec()方法提取出子串来。
+exec()方法在匹配成功后，会返回一个Array，第一个元素是正则表达式匹配到的整个字符串，后面的字符串表示匹配成功的子串。
+exec()方法在匹配失败时返回null。
+
+``` JavaScript
+// 从匹配的字符串中提取出区号和本地号码
+var re = /^(\d{3})-(\d{3,8})$/;
+re.exec('010-12345'); // ['010-12345', '010', '12345']
+re.exec('010 12345'); // null
+```
+- 全局搜索
+
+``` JavaScript
+var s = 'JavaScript, VBScript, JScript and ECMAScript';
+var re=/[a-zA-Z]+Script/g;
+
+// 使用全局匹配:
+re.exec(s); // ['JavaScript']
+re.lastIndex; // 10
+
+re.exec(s); // ['VBScript']
+re.lastIndex; // 20
+
+re.exec(s); // ['JScript']
+re.lastIndex; // 29
+
+re.exec(s); // ['ECMAScript']
+re.lastIndex; // 44
+
+re.exec(s); // null，直到结束仍没有匹配到
+```
 
 #### 3.3 JSON
 
