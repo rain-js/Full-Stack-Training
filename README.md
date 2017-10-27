@@ -858,6 +858,57 @@ re.exec(s); // null，直到结束仍没有匹配到
 ```
 
 #### 3.3 JSON
+> JSON是JavaScript Object Notation的缩写，它是一种数据交换格式。JSON还定死了字符集必须是UTF-8，表示多语言就没有问题了。为了统一解析，JSON的字符串规定必须用双引号""，Object的键也必须用双引号""。
+
+>把任何JavaScript对象变成JSON，就是把这个对象序列化成一个JSON格式的字符串，这样才能够通过网络传递给其他计算机。
+如果我们收到一个JSON格式的字符串，只需要把它反序列化成一个JavaScript对象，就可以在JavaScript中直接使用这个对象了。
+
+- 序列化
+
+``` JavaScirpt
+var o = {
+    name: 'rain',
+    age: 25,
+    gender: 'male',
+    grade: null,
+    skills: ['HTML', 'CSS', 'JavaScript', 'Node.js']
+};
+
+JSON.stringify(o);
+// "{"name":"rain","age":25,"gender":"male","grade":null,"skills":["HTML","CSS","JavaScript","Node.js"]}"
+
+JSON.stringify(o, null, '  ');  // 按缩进输出
+
+JSON.stringify(o, ['name', 'skills', 'age'], '  '); // 输出指定的属性
+
+function convert(key, value) {
+    if (typeof value === 'string') {
+        return value.toUpperCase();
+    }
+    return value;
+}
+
+JSON.stringify(o, convert, '  ');   // 传入一个函数，这样对象的每个键值对都会被函数先处理
+```
+
+- 反序列化
+拿到一个JSON格式的字符串，我们直接用JSON.parse()把它变成一个JavaScript对象：
+``` JavaScript
+JSON.parse('[1,2,3,true]'); // [1, 2, 3, true]
+JSON.parse('{"name":"rain","age":25}'); // Object {name: 'rain', age: 25}
+JSON.parse('true'); // true
+JSON.parse('123.45'); // 123.45
+```
+
+JSON.parse()还可以接收一个函数，用来转换解析出的属性：
+``` JavaScript
+JSON.parse('{"name":"rain","age":25}', function (key, value) {
+    if (key === 'name') {
+        return value + '同学';
+    }
+    return value;
+}); // Object {name: 'rain同学', age: 25}
+```
 
 ### 4 面向对象编程
 
