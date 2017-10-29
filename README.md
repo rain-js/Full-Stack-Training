@@ -997,6 +997,28 @@ class PrimaryStudent extends Student {
 - **window**
 > window对象有innerWidth和innerHeight属性，可以获取浏览器窗口的内部宽度和高度。内部宽高是指除去菜单栏、工具栏、边框等占位元素后，用于显示网页的净宽高。对应的，还有一个outerWidth和outerHeight属性，可以获取浏览器窗口的整个宽高。(兼容性：IE<=8不支持。)
 
+- **navigator**
+1. navigator.appName：浏览器名称；
+2. navigator.appVersion：浏览器版本；
+3. navigator.language：浏览器设置的语言；
+4. navigator.platform：操作系统类型；
+5. navigator.userAgent：浏览器设定的User-Agent字符串。
+> 请注意，navigator的信息可以很容易地被用户修改，所以JavaScript读取的值不一定是正确的。很多初学者为了针对不同浏览器编写不同的代码，喜欢用if判断浏览器版本，例如：
+
+``` JavaScript
+var width;
+if (getIEVersion(navigator.userAgent) < 9) {
+    width = document.body.clientWidth;
+} else {
+    width = window.innerWidth;
+}
+```
+> 但这样既可能判断不准确，也很难维护代码。正确的方法是充分利用JavaScript对不存在属性返回undefined的特性，直接用短路运算符||计算：
+
+``` JavaScript
+var width = window.innerWidth || document.body.clientWidth;
+```
+
 #### 5.2 操作DOM
 
 #### 5.3 操作表单
