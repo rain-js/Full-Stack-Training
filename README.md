@@ -994,6 +994,8 @@ class PrimaryStudent extends Student {
 ### 5 浏览器
 
 #### 5.1 浏览器对象
+- **window**
+> window对象有innerWidth和innerHeight属性，可以获取浏览器窗口的内部宽度和高度。内部宽高是指除去菜单栏、工具栏、边框等占位元素后，用于显示网页的净宽高。对应的，还有一个outerWidth和outerHeight属性，可以获取浏览器窗口的整个宽高。(兼容性：IE<=8不支持。)
 
 #### 5.2 操作DOM
 
