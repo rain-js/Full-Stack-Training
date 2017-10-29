@@ -1019,6 +1019,10 @@ if (getIEVersion(navigator.userAgent) < 9) {
 var width = window.innerWidth || document.body.clientWidth;
 ```
 
+- **screen**
+1. screen.width：屏幕宽度，以像素为单位；
+2. screen.height：屏幕高度，以像素为单位；
+3. screen.colorDepth：返回颜色位数，如8、16、24。
 #### 5.2 操作DOM
 
 #### 5.3 操作表单
