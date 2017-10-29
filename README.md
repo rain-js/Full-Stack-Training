@@ -929,6 +929,43 @@ JSON.parse('{"name":"rain","age":25}', function (key, value) {
 
 #### 4.2 原型继承
 
+``` JavaScript
+function inherit(subclass, superclass) {
+    var _prototype = Object.create(superclass.prototype)
+    _prototype.constructor = subclass
+    subclass.prototype = _prototype
+}
+
+// Shape - superclass
+function Shape() {
+    this.x = 0
+    this.y = 0
+}
+
+// superclass method
+Shape.prototype.move = function(x, y) {
+    this.x += x
+    this.y += y
+    console.log('Shape moved. this.x = ' + this.x + ' this.y = ' + this.y)
+}
+
+// Rectangle - subclass
+function Rectangle() {
+    Shape.call(this)
+}
+
+// subclass extends superclass
+// Rectangle.prototype = Object.create(Shape.prototype)
+// Rectangle.prototype.constructor = Rectangle
+inherit(Rectangle, Shape)
+
+var rect = new Rectangle()
+
+rect.move(2, 2)
+```
+
+
+
 #### 4.3 class继承
 
 ### 5 浏览器
