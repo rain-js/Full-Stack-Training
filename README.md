@@ -967,7 +967,30 @@ rect.move(2, 2)
 
 
 #### 4.3 class继承
+> class的定义包含了构造函数constructor和定义在原型对象上的函数hello()（注意没有function关键字）。PrimaryStudent的定义也是class关键字实现的，而extends则表示原型链对象来自Student。
 
+``` JavaScript
+class Student {
+    constructor(name) {
+        this.name = name
+    }
+
+    hello() {
+        console.log('hello ' + this.name)
+    }
+}
+
+class PrimaryStudent extends Student {
+    constructor(name, grade) {
+        super(name)    // 记得用super调用父类的构造方法
+        this.grade = grade
+    }
+
+    myGrade() {
+        console.log('I am at grade ' + this.grade)
+    }
+}
+```
 ### 5 浏览器
 
 #### 5.1 浏览器对象
