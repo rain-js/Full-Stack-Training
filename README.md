@@ -1023,6 +1023,21 @@ var width = window.innerWidth || document.body.clientWidth;
 1. screen.width：屏幕宽度，以像素为单位；
 2. screen.height：屏幕高度，以像素为单位；
 3. screen.colorDepth：返回颜色位数，如8、16、24。
+
+- **location**
+``` JavaScript
+location.href       // http://www.example.com:8080/path/index.html?a=1&b=2#TOP
+location.protocol;  // 'http'
+location.host;      // 'www.example.com'
+location.port;      // '8080'
+location.pathname;  // '/path/index.html'
+location.search;    // '?a=1&b=2'
+location.hash;      // 'TOP'
+
+location.assign('/discuss')   // 加载一个新页面
+location.reload()   // 重新加载当前页面
+```
+
 #### 5.2 操作DOM
 
 #### 5.3 操作表单
