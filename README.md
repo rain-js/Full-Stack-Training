@@ -1038,6 +1038,33 @@ location.assign('/discuss')   // 加载一个新页面
 location.reload()   // 重新加载当前页面
 ```
 
+- **document**
+
+1. document.title  // 浏览器窗口标题
+2. document.getElementById()       // 按ID获得一个DOM节点
+3. document.getElementsByTagName() // 按Tag名称获得一组DOM节点
+
+4. document.cookie // 获取当前页面的Cookie
+> Cookie是由服务器发送的key-value标示符。因为HTTP协议是无状态的，但是服务器要区分到底是哪个用户发过来的请求，就可以用Cookie来区分。当一个用户成功登录后，服务器发送一个Cookie给浏览器，例如user=ABC123XYZ(加密的字符串)...，此后，浏览器访问该网站时，会在请求头附上这个Cookie，服务器根据Cookie即可区分出用户。
+
+> 由于JavaScript能读取到页面的Cookie，而用户的登录信息通常也存在Cookie中，这就造成了巨大的安全隐患，这是因为在HTML页面中引入第三方的JavaScript代码是允许的：
+
+``` JavaScript
+<!-- 当前页面在www.example.com -->
+<html>
+    <head>
+        <script src="http://www.foo.com/jquery.js"></script>
+    </head>
+    ...
+</html>
+```
+
+> 如果引入的第三方的JavaScript中存在恶意代码，则www.foo.com网站将直接获取到www.example.com网站的用户登录信息。
+
+> 为了解决这个问题，服务器在设置Cookie时可以使用httpOnly，设定了httpOnly的Cookie将不能被JavaScript读取。这个行为由浏览器实现，主流浏览器均支持httpOnly选项，IE从IE6 SP1开始支持。
+
+> 为了确保安全，服务器端在设置Cookie时，应该始终坚持使用httpOnly。
+
 #### 5.2 操作DOM
 
 #### 5.3 操作表单
