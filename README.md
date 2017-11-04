@@ -1072,14 +1072,28 @@ location.reload()   // 重新加载当前页面
 > 这个对象属于历史遗留对象，对于现代Web页面来说，由于大量使用AJAX和页面交互，简单粗暴地调用history.back()可能会让用户感到非常愤怒。
 
 #### 5.2 操作DOM
-
+> 在操作一个 DOM 节点前，我们需要通过各种方式先拿到这个 DOM 节点。
+- document.getElementById()
+- document.getElementsByTagName()
+- document.getElementsByClassName()
+- querySelector()
+- querySelectorAll()
+> 注意：低版本的 IE<8 不支持 querySelector 和 querySelectorAll。IE8 仅有限支持。
 #### 5.3 操作表单
 
-#### 5.4 操作文件
+##### 5.2.1 更新DOM
 
-#### 5.5 AJAX
+##### 5.2.2 插入DOM
 
-#### 5.6 Promise
+##### 5.2.1 删除DOM
 
-#### 5.7 Canvas
+#### 5.4 操作表单
+
+#### 5.5 操作文件
+
+#### 5.6 AJAX
+
+#### 5.7 Promise
+
+#### 5.8 Canvas
 
