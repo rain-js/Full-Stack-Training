@@ -1077,23 +1077,36 @@ location.reload()   // 重新加载当前页面
 - document.getElementsByTagName()
 - document.getElementsByClassName()
 - querySelector()
+
 - querySelectorAll()
 > 注意：低版本的 IE<8 不支持 querySelector 和 querySelectorAll。IE8 仅有限支持。
-#### 5.3 操作表单
 
 ##### 5.2.1 更新DOM
+1. innerHTML
+
+    不但可以修改一个 DOM 节点的文本内容，还可以直接通过 HTML 片段修改 DOM 节点内部的子树。
+    > 用 innerHTML 时要注意，是否需要写入 HTML 。如果写入的字符串是通过网络拿到了，要注意对字符编码来避免 XSS 攻击。
+
+2. innerText 或 textContent
+
+    两者的区别在于读取属性时，innerText 不返回隐藏元素的文本，而 textContent 返回所有文本。另外注意 IE<9 不支持textContent。
+    > 可以自动对字符串进行 HTML 编码，保证无法设置任何 HTML 标签
+
+3. style
+
+    DOM 节点的 style 属性对应所有的 CSS，可以直接获取或设置。因为 CSS 允许 font-size 这样的名称，但它并非 JavaScript   有效的属性名，所以需要在 JavaScript 中改写为驼峰式命名 fontSize。
 
 ##### 5.2.2 插入DOM
 
 ##### 5.2.1 删除DOM
 
-#### 5.4 操作表单
+#### 5.3 操作表单
 
-#### 5.5 操作文件
+#### 5.4 操作文件
 
-#### 5.6 AJAX
+#### 5.5 AJAX
 
-#### 5.7 Promise
+#### 5.6 Promise
 
-#### 5.8 Canvas
+#### 5.7 Canvas
 
