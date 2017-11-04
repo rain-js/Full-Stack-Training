@@ -1065,6 +1065,12 @@ location.reload()   // 重新加载当前页面
 
 > 为了确保安全，服务器端在设置Cookie时，应该始终坚持使用httpOnly。
 
+- **history**
+
+> history对象保存了浏览器的历史记录，JavaScript可以调用history对象的back()或forward ()，相当于用户点击了浏览器的“后退”或“前进”按钮。
+
+> 这个对象属于历史遗留对象，对于现代Web页面来说，由于大量使用AJAX和页面交互，简单粗暴地调用history.back()可能会让用户感到非常愤怒。
+
 #### 5.2 操作DOM
 
 #### 5.3 操作表单
