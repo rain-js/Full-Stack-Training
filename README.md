@@ -1136,7 +1136,82 @@ parent.removeChild(parent.children[1]) // <-- 浏览器报错
 > 浏览器报错：parent.children[1] 不是一个有效的节点。原因就在于，当 <p\>First<\/p> 节点被删除后，parent.children 的节点数量已经从 2 变为了 1，索引 [1] 已经不存在了。因此，删除多个节点时，要注意 children 属性时刻都在变化。
 
 #### 5.3 操作表单
+1. 获取值
 
+    对于 text、password、hidden 以及 select，直接调用 value 获得对应的用户输入值。
+    对于单选框和复选框，value 属性返回的永远是 HTML 预设的值，而我们需要获得的实际是用户是否“勾上了”选项，所以应该用 checked 判断。
+    
+    ``` HTML
+    <input type="text" id="email">
+    ```
+    ``` JavaScript
+    var input = document.getElementById('email')
+    input.value // 用户输入的值
+    ```
+2. 设置值
+
+    设置值和获取值类似。
+    
+3. 表单提交
+- 通过 \<form> 元素的 submit() 方法提交一个表单，例如，响应一个 \<button> 的 click 事件
+    ``` HTML
+    <form id="test-form">
+        <input type="text" name="test">
+        <button type="button" onclick="doSubmitForm()">Submit</button>
+    </form>
+    ```
+    
+    ``` JavaScript
+    function doSubmitForm() {
+        var form = document.getElementById('test-form')
+        // 可以在此修改form的input...
+        // 提交form
+        form.submit()
+    }
+    ```
+    > 这种方式的缺点是扰乱了浏览器对 form 的正常提交。浏览器默认点击 \<button type="submit"> 时提交表单，或者用户在最后一个输入框按回车键。
+
+- 响应 \<form> 本身的 onsubmit 事件，在提交 form 时作修改
+    ``` HTML
+    <form id="test-form" onsubmit="return checkForm()">
+        <input type="text" name="test">
+        <button type="submit">Submit</button>
+    </form>
+    ```
+    
+    ``` JavaScript
+    function checkForm() {
+        var form = document.getElementById('test-form')
+        // 可以在此修改form的input...
+        // 继续下一步
+        return true
+    }
+    ```
+    > 注意要 return true 来告诉浏览器继续提交，如果 return false，浏览器将不会继续提交 form，这种情况通常对应用户输入有误，提示用户错误信息后终止提交 form。
+
+- 在检查和修改 \<input> 时，要充分利用 \<input type="hidden"> 来传递数据。
+    > 很多登录表单希望用户输入用户名和口令，但是，安全考虑，提交表单时不传输明文口令，而是口令的 MD5。普通 JavaScript 开发人员会直接修改 \<input>。这个做法看上去没啥问题，但用户输入了口令提交时，口令框的显示会突然从几个 * 变成32个 *（因为 MD5有 32 个字符）
+    
+    ``` HTML
+    <form id="login-form" method="post" onsubmit="return checkForm()">
+        <input type="text" id="username" name="username">
+        <input type="password" id="input-password">
+        <input type="hidden" id="md5-password" name="password">
+        <button type="submit">Submit</button>
+    </form>
+    ```
+    ``` JavaScript
+    function checkForm() {
+        var input_pwd = document.getElementById('input-password')
+        var md5_pwd = document.getElementById('md5-password')
+        // 把用户输入的明文变为MD5
+        md5_pwd.value = toMD5(input_pwd.value)
+        // 继续下一步
+        return true
+    }   
+    ```
+    > 注意到 id 为 md5-password 的 \<input> 标记了 name="password"，而用户输入的 id 为 input-password 的 \<input>没有name属性。没有name属性的<input>的数据不会被提交。
+    
 #### 5.4 操作文件
 
 #### 5.5 AJAX
