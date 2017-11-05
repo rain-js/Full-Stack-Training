@@ -1077,7 +1077,6 @@ location.reload()   // 重新加载当前页面
 - document.getElementsByTagName()
 - document.getElementsByClassName()
 - querySelector()
-
 - querySelectorAll()
 > 注意：低版本的 IE<8 不支持 querySelector 和 querySelectorAll。IE8 仅有限支持。
 
@@ -1097,6 +1096,28 @@ location.reload()   // 重新加载当前页面
     DOM 节点的 style 属性对应所有的 CSS，可以直接获取或设置。因为 CSS 允许 font-size 这样的名称，但它并非 JavaScript   有效的属性名，所以需要在 JavaScript 中改写为驼峰式命名 fontSize。
 
 ##### 5.2.2 插入DOM
+1. appendChild
+    > 把一个子节点添加到父节点的最后一个子节点
+
+    ``` JavaScript
+    var d = document.createElement('style')
+    d.setAttribute('type', 'text/css')
+    d.innerHTML = 'p { color: red }'
+    document.getElementsByTagName('head')[0].appendChild(d)
+    ```
+
+2. insertBefore
+    > parentElement.insertBefore(newElement, referenceElement);，子节点会插入到referenceElement之前。
+
+    ``` JavaScript
+    // 需要循环一个父节点的所有子节点，可以通过迭代children属性实现
+    var c,
+        list = document.getElementById('list')
+
+    for (var i = 0; i < list.children.length; i++) {
+        c = list.children[i]; // 拿到第i个子节点
+    }
+    ```
 
 ##### 5.2.1 删除DOM
 
