@@ -1213,6 +1213,78 @@ parent.removeChild(parent.children[1]) // <-- 浏览器报错
     > 注意到 id 为 md5-password 的 \<input> 标记了 name="password"，而用户输入的 id 为 input-password 的 \<input>没有name属性。没有name属性的<input>的数据不会被提交。
     
 #### 5.4 操作文件
+> 在 HTML 表单中，可以上传文件的唯一控件就是 \<input type="file">。
+
+>注意：当一个表单包含 \<input type="file"> 时，表单的 enctype 必须指定为 multipart/form-data，method 必须指定为  post，浏览器才能正确编码并以 multipart/form-data 格式发送表单的数据。
+
+**File API**
+   
+   随着 HTML5 的普及，新增的 File API 允许 JavaScript 读取文件内容，获得更多的文件信息。HTML5 的 File API 提供了 File 和 FileReader 两个主要对象，可以获得文件信息并读取文件。
+
+> 下面的例子演示了如何读取用户选取的图片文件，并在一个 \<div> 中预览图像：
+
+``` CSS
+#test-image-preview {
+    border: 1px solid #ccc;
+    width: 100%;
+    height: 200px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+```
+
+``` HTML
+<form method="post" action="http://localhost/test" enctype="multipart/form-data">
+    <p>图片预览：</p>
+    <p></p>
+    <div id="test-image-preview"></div>
+    <p><input type="file" id="test-image-file" name="test"></p>
+    <p id="test-file-info"></p>
+</form>
+```
+
+``` JavaScript
+var fileInput = document.getElementById('test-image-file'),
+    info = document.getElementById('test-file-info'),
+    preview = document.getElementById('test-image-preview')
+
+// 监听change事件
+fileInput.addEventListener('change', function () {
+    
+    // 清除背景图片
+    preview.style.backgroundImage = ''
+    
+    // 检查文件是否选择
+    if (!fileInput.value) {
+        info.innerHTML = '没有选择文件'
+        return
+    }
+    
+    // 获取File引用
+    var file = fileInput.files[0]
+    // 获取File信息
+    info.innerHTML = '文件: ' + file.name + '<br>' +
+                     '大小: ' + file.size + '<br>' +
+                     '修改: ' + file.lastModifiedDate
+                     
+    if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/gif') {
+        alert('不是有效的图片文件!')
+        return
+    }
+    
+    // 读取文件
+    var reader = new FileReader()
+    reader.onload = function(e) {
+        var data = e.target.result; // 'data:image/jpeg;base64,/9j/4AAQSk...(base64编码)...'            
+        preview.style.backgroundImage = 'url(' + data + ')'
+    }
+    
+    // 以DataURL的形式读取文件
+    reader.readAsDataURL(file)
+})
+```
 
 #### 5.5 AJAX
 
