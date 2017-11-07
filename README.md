@@ -1287,6 +1287,105 @@ fileInput.addEventListener('change', function () {
 ```
 
 #### 5.5 AJAX
+> 如果要让用户留在当前页面中，同时发出新的 HTTP 请求，就必须用 JavaScript 发送这个新请求，接收到数据后，再用 JavaScript   更新页面，这样一来，用户就感觉自己仍然停留在当前页面，但是数据却可以不断地更新。
+---
+
+1. 用 JavaScript 写一个完整的 AJAX 代码并不复杂，但是需要注意： AJAX 请求是异步执行的，也就是说，要通过回调函数获得响应。
+
+``` JavaScript
+function success(text) {
+    var textarea = document.getElementById('test-response-text')
+    textarea.value = text
+}
+
+function fail(code) {
+    var textarea = document.getElementById('test-response-text')
+    textarea.value = 'Error code: ' + code
+}
+
+var request = new XMLHttpRequest() // 新建XMLHttpRequest对象
+
+request.onreadystatechange = function () {  // 状态发生变化时，函数被回调
+    if (request.readyState === 4) {         // 成功完成
+        // 判断响应结果
+        if (request.status === 200) {
+            // 成功，通过 responseText 拿到响应的文本
+            return success(request.responseText)
+        } else {
+            // 失败，根据响应码判断失败原因
+            return fail(request.status)
+        }
+    } else {
+        // HTTP请求还在继续...
+    }
+}
+
+// 发送请求
+request.open('GET', '/api/categories')
+request.send()
+
+alert('请求已发送，请等待响应...')
+```
+
+2. 标准写法和 IE 写法混在一起，可以这么写：
+
+``` JavaScript
+var request
+if (window.XMLHttpRequest) {
+    request = new XMLHttpRequest()
+} else {
+    request = new ActiveXObject('Microsoft.XMLHTTP')
+}
+```
+> 通过检测 window 对象是否有 XMLHttpRequest 属性来确定浏览器是否支持标准的 XMLHttpRequest。注意，不要根据浏览器的       navigator.userAgent 来检测浏览器是否支持某个 JavaScript 特性，一是因为这个字符串本身可以伪造，二是通过 IE 版本判断     JavaScript 特性将非常复杂。
+
+> 当创建了 XMLHttpRequest 对象后，要先设置 onreadystatechange 的回调函数。在回调函数中，通常我们只需通过 readyState === 4 判断请求是否完成，如果已完成，再根据 status === 200 判断是否是一个成功的响应。
+
+> 注意，千万不要把第三个参数指定为 false，否则浏览器将停止响应，直到 AJAX 请求完成。如果这个请求耗时 10 秒，那么 10 秒内你会发现浏览器处于“假死”状态。
+
+**安全限制**
+> 默认情况下，JavaScript 在发送 AJAX 请求时，URL 的域名必须和当前页面完全一致。完全一致的意思是，域名要相同（www.example.com 和 example.com 不同），协议要相同（http 和 https 不同），端口号要相同（默认是 :80 端口，它和 :8080就不同）。
+
+跨域：
+- 通过 Flash 插件发送 HTTP 请求，这种方式可以绕过浏览器的安全限制，但必须安装 Flash，并且跟 Flash 交互。
+
+- 通过在同源域名下架设一个代理服务器来转发，JavaScript 负责把请求发送到代理服务器： '/proxy?url=http://www.sina.com.cn'，代理服务器再把结果返回，这样就遵守了浏览器的同源策略。
+
+- JSONP，它有个限制，只能用 GET 请求，并且要求返回 JavaScript。这种方式跨域实际上是利用了浏览器允许跨域引用 JavaScript 资源。
+
+> 以 163 的股票查询 URL 为例，对于 URL：http://api.money.126.net/data/feed/0000001,1399001?callback=refreshPrice，你将得到如下返回： refreshPrice({"0000001":{"code": "0000001", ... });
+
+1. 首先在页面中准备好回调函数
+
+``` JavaScript
+function refreshPrice(data) {
+    var p = document.getElementById('test-jsonp')
+    p.innerHTML = '当前价格：' +
+        data['0000001'].name +': ' +
+        data['0000001'].price + '；' +
+        data['1399001'].name + ': ' +
+        data['1399001'].price
+}
+```
+2. 最后用getPrice()函数触发
+
+``` JavaScript
+function getPrice() {
+    var js = document.createElement('script'),
+        head = document.getElementsByTagName('head')[0]
+
+    js.src = 'http://api.money.126.net/data/feed/0000001,1399001?callback=refreshPrice'
+    head.appendChild(js)
+}
+```
+
+- CORS
+
+    CORS 全称 Cross-Origin Resource Sharing，是 HTML5 规范定义的如何跨域访问资源。
+
+    跨域能否成功，取决于对方服务器是否愿意给你设置一个正确的 Access-Control-Allow-Origin，决定权始终在对方手中。
+
+![img](./img/CORS.png)
 
 #### 5.6 Promise
 
