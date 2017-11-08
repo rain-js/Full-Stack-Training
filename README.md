@@ -1388,6 +1388,65 @@ function getPrice() {
 ![img](./img/CORS.png)
 
 #### 5.6 Promise
+> 在 JavaScript 的世界中，所有代码都是单线程执行的。由于这个“缺陷”，导致 JavaScript 的所有网络操作，浏览器事件，都必须是异步执行。异步执行可以用回调函数实现。异步操作会在将来的某个时间点触发一个函数调用。
+
+- 把上一节的 AJAX 异步执行函数转换为 Promise 对象:
+``` JavaScript
+// ajax函数将返回Promise对象
+function ajax(method, url, data) {
+    var request = new XMLHttpRequest()
+
+    return new Promise(function (resolve, reject) {
+        request.onreadystatechange = function () {
+            if (request.readyState === 4) {
+                if (request.status === 200) {
+                    resolve(request.responseText)
+                } else {
+                    reject(request.status)
+                }
+            }
+        }
+
+        request.open(method, url)
+        request.send(data)
+    })
+}
+
+var log = document.getElementById('test-promise-ajax-result')
+var p = ajax('GET', '/api/categories')
+p.then(function (text) {        // 如果AJAX成功，获得响应内容
+    log.innerText = text
+}).catch(function (status) {    // 如果AJAX失败，获得响应代码
+    log.innerText = 'ERROR: ' + status
+})
+
+```
+- 试想一个页面聊天系统，我们需要从两个不同的 URL 分别获得用户的个人信息和好友列表，这两个任务是可以并行执行的，用Promise.all() 实现如下：
+``` JavaScript
+var p1 = new Promise(function (resolve, reject) {
+    setTimeout(resolve, 500, 'P1')
+})
+var p2 = new Promise(function (resolve, reject) {
+    setTimeout(resolve, 600, 'P2')
+})
+
+// 同时执行p1和p2，并在它们都完成后执行then
+Promise.all([p1, p2]).then(function (results) {
+    console.log(results) // 获得一个Array: ['P1', 'P2']
+})
+```
+- 有些时候，多个异步任务是为了容错。比如，同时向两个URL读取用户的个人信息，只需要获得先返回的结果即可。这种情况下，用Promise.race() 实现：
+``` JavaScript
+var p1 = new Promise(function (resolve, reject) {
+    setTimeout(resolve, 500, 'P1')
+})
+var p2 = new Promise(function (resolve, reject) {
+    setTimeout(resolve, 600, 'P2')
+})
+Promise.race([p1, p2]).then(function (result) {
+    console.log(result); // 'P1'
+})
+```
 
 #### 5.7 Canvas
 
