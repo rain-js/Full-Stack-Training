@@ -1454,3 +1454,17 @@ Promise.race([p1, p2]).then(function (result) {
 - Canvas的坐标系统
 
 ![img](./img/canvas.png)
+
+### 6 jQuery
+
+#### 6.1 选择器
+
+#### 6.2 操作DOM
+
+#### 6.3 事件
+
+#### 6.4 动画
+
+#### 6.5 AJAX
+
+#### 6.6 扩展
