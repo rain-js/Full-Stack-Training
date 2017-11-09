@@ -1456,6 +1456,31 @@ Promise.race([p1, p2]).then(function (result) {
 ![img](./img/canvas.png)
 
 ### 6 jQuery
+jQuery 这么流行，肯定是因为它解决了一些很重要的问题。实际上，jQuery 能帮我们干这些事情：
+- 消除浏览器差异：你不需要自己写冗长的代码来针对不同的浏览器来绑定事件，编写 AJAX 等代码；
+- 简洁的操作 DOM 的方法：写 $('#test') 肯定比 document.getElementById('test') 来得简洁；
+- 轻松实现动画、修改 CSS 等各种操作。
+
+1. jQuery 版本
+
+    目前 jQuery 有 1.x 和 2.x 两个主要版本，区别在于 2.x 移除了对古老的 IE 6、7、8 的支持，因此 2.x 的代码更精简。选择哪个版本主要取决于你是否想支持 IE 6~8。
+2. $ 符号
+
+    $ 是著名的 jQuery 符号。实际上，jQuery 把所有功能全部封装在一个全局变量 jQuery 中，而 $ 也是一个合法的变量名，它是变量 jQuery 的别名。
+    ``` JavaScript
+    window.jQuery   // jQuery(selector, context)
+    window.$        // jQuery(selector, context)
+    $ === jQuery    // true
+    typeof($)       // 'function'
+    ```
+    绝大多数时候，我们都直接用 $（因为写起来更简单嘛）。但是，如果 $ 这个变量不幸地被占用了，而且还不能改，那我们就只能让     jQuery 把 $ 变量交出来，然后就只能使用 jQuery 这个变量。这种黑魔法的原理是 jQuery 在占用 $ 之前，先在内部保存了原来的 $,调用 jQuery.noConflict() 时会把原来保存的变量还原。
+    ``` JavaScript
+    $       // jQuery(selector, context)
+    jQuery.noConflict()
+    $       // undefined
+    jQuery  // jQuery(selector, context)
+    ```
+    
 
 #### 6.1 选择器
 
