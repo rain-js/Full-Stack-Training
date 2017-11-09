@@ -1449,4 +1449,8 @@ Promise.race([p1, p2]).then(function (result) {
 ```
 
 #### 5.7 Canvas
+> Canvas 是 HTML5 新增的组件，它就像一块幕布，可以用 JavaScript 在上面绘制各种图表、动画等。相关内容可参考 [mdn 文档](https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/canvas)
 
+- Canvas的坐标系统
+
+![img](./img/canvas.png)
