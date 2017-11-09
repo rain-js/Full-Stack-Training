@@ -1480,7 +1480,14 @@ jQuery 这么流行，肯定是因为它解决了一些很重要的问题。实�
     $       // undefined
     jQuery  // jQuery(selector, context)
     ```
-    
+3. jQuery 对象和 DOM 对象之间可以互相转化：
+
+    jQuery 对象类似数组，它的每个元素都是一个引用了 DOM 节点的对象
+    ``` JavaScript
+    var div = $('#abc') // jQuery对象
+    var divDom = div.get(0) // 假设存在 div，获取第1个DOM元素
+    var another = $(divDom) // 重新把DOM包装为jQuery对象
+    ```
 
 #### 6.1 选择器
 
