@@ -1490,6 +1490,43 @@ jQuery 这么流行，肯定是因为它解决了一些很重要的问题。实�
     ```
 
 #### 6.1 选择器
+``` JavaScript
+$('#abc')   // 按 ID 查找
+$('p')      // 按 tag 查找
+$('.red.green') // 按 class 查找, 查找同时包含 red 和 green 的节点
+$('[type=password]')    // 按属性查找
+$('input[name=email]')  // 组合查找
+$('p,div')              // 多项选择器
+$('ul.lang li') // 层级选择器
+$('ul.lang>li.lang-javascript') // 子选择器
+
+// 过滤器
+$('ul.lang li:first-child')
+$('ul.lang li:last-child')
+$('ul.lang li:nth-child(2)')    // 选出第N个元素，N从1开始
+$('ul.lang li:nth-child(even)') // 选出序号为偶数的元素
+$('ul.lang li:nth-child(odd)')  // 选出序号为奇数的元素
+
+// 表单相关
+$('input:focus')    // 选择当前输入焦点的元素
+$('input[type=radio]:checked')  // 选择当前勾上的单选框
+```
+
+- find()
+- parent()
+- next()
+- prev()
+- filter()
+- map()
+
+> filter() 方法可以传入一个函数，要特别注意函数内部的 this 被绑定为 DOM 对象，不是 jQuery 对象
+
+``` JavaScript
+var langs = $('ul.lang li') // 拿到JavaScript, Python, Swift, Scheme和Haskell
+langs.filter(function () {
+    return this.innerHTML.indexOf('S') === 0    // 返回S开头的节点,拿到Swift, Scheme
+})
+```
 
 #### 6.2 操作DOM
 
