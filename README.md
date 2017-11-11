@@ -1529,6 +1529,51 @@ langs.filter(function () {
 ```
 
 #### 6.2 操作DOM
+> jQuery 的 API 设计非常巧妙：无参数调用 text() 是获取文本，传入参数就变成设置文本，HTML 也是类似操作。一个 jQuery 对象可以包含 0 个或任意个 DOM 对象，它的方法实际上会作用在对应的每个 DOM 节点上。
+
+- text() html() // 修改 Text 和 HTML
+- css() hasClass() addClass() removeClass() // 修改 CSS
+- hide() show() // 显示和隐藏 DOM
+- attr() removeAttr()   // 操作 DOM 节点的属性
+- prop() is()
+- val()     // 获取和设置各种输入框对应的value属性
+
+``` JavaScript
+// 浏览器可视窗口大小
+$(window).width()   // 800
+$(window).height()  // 600
+
+// HTML文档大小
+$(document).width()  // 800
+$(document).height() // 3500
+```
+``` HTML
+<input id="test-radio" type="radio" name="test" checked value="1">
+```
+``` JavaScript
+var radio = $('#test-radio')
+radio.attr('checked') // 'checked'
+radio.prop('checked') // true
+radio.is(':checked') // true
+```
+- append()  prepend() after() before() // 添加 DOM
+``` JavaScript
+// 创建DOM对象
+var ps = document.createElement('li')
+ps.innerHTML = '<span>Pascal</span>'
+
+// 添加DOM对象
+ul.append(ps)
+
+// 添加jQuery对象
+ul.append($('#scheme'))
+
+// 添加函数对象
+ul.append(function (index, html) {
+    return '<li><span>Language - ' + index + '</span></li>'
+})
+```
+- remove()  // 删除节点
 
 #### 6.3 事件
 
