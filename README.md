@@ -1778,4 +1778,40 @@ ul.append(function (index, html) {
         })
     }
     ```
-    
+
+### 7 错误处理
+
+#### 7.1 错误传播
+
+#### 7.2 异步错误处理
+
+### 8 underscore
+
+#### 8.1 Collections
+
+#### 8.2 Arrays
+
+#### 8.3 Functions
+
+#### 8.4 Objects
+
+#### 8.5 Chaining
+
+### 9 Node.js
+
+#### 9.1 安装 Node.js 和 npm
+
+#### 9.2 第一个 Node 程序
+
+#### 9.3 搭建 Node 开发环境
+
+#### 9.4 模块
+
+#### 9.5 基本模块
+
+#### 9.6 Web开发
+
+#### 9.7 自动化工具
+
+#### 9.8 React
+
