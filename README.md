@@ -1758,22 +1758,22 @@ ul.append(function (index, html) {
     ``` JavaScript
     $.fn.external = function () {
     
-    // return 返回的 each() 返回结果，支持链式调用
-    return this.filter('a').each(function () {
-    
-        // 注意: each() 内部的回调函数的 this 绑定为 DOM 本身!
-        var a = $(this)
-        var url = a.attr('href')
-        
-        if (url && (url.indexOf('http://')===0 || url.indexOf('https://')===0)) {
-            a.attr('href', '#0')
-                .removeAttr('target')
-                .append(' <i class="uk-icon-external-link"></i>')
-                .click(function () {
-                    if(confirm('你确定要前往' + url + '？')) {
-                        window.open(url);
-                    }
-                })
+        // return 返回的 each() 返回结果，支持链式调用
+        return this.filter('a').each(function () {
+
+            // 注意: each() 内部的回调函数的 this 绑定为 DOM 本身!
+            var a = $(this)
+            var url = a.attr('href')
+
+            if (url && (url.indexOf('http://')===0 || url.indexOf('https://')===0)) {
+                a.attr('href', '#0')
+                    .removeAttr('target')
+                    .append(' <i class="uk-icon-external-link"></i>')
+                    .click(function () {
+                        if(confirm('你确定要前往' + url + '？')) {
+                            window.open(url);
+                        }
+                    })
             }
         })
     }
