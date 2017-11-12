@@ -1576,6 +1576,87 @@ ul.append(function (index, html) {
 - remove()  // 删除节点
 
 #### 6.3 事件
+- **鼠标事件**
+
+    click: 鼠标单击时触发
+    
+    dblclick：鼠标双击时触发
+    
+    mouseenter：鼠标进入时触发
+    
+    mouseleave：鼠标移出时触发
+    
+    mousemove：鼠标在 DOM 内部移动时触发
+    
+    hover：鼠标进入和退出时触发两个函数，相当于 mouseenter 加上 mouseleave。
+
+- **键盘事件**
+
+    键盘事件仅作用在当前焦点的 DOM 上，通常是 \<input> 和 \<textarea>。
+
+    keydown：键盘按下时触发
+
+    keyup：键盘松开时触发
+
+    keypress：按一次键后触发
+
+- **其他事件**
+
+    focus：当 DOM 获得焦点时触发
+
+    blur：当 DOM 失去焦点时触发
+
+    change：当 \<input>、\<select>或 \<textarea> 的内容改变时触发
+
+    submit：当 \<form>提交时触发
+
+    ready：当页面被载入并且 DOM 树完成初始化后触发
+
+    ``` JavaScript
+    $(document).on('ready', function () {
+        $('#testForm').on('submit', function () {
+            alert('submit!')
+        })
+    })
+
+    // <=> 
+
+    $(document).ready(function() {
+        $('#testForm').submit(function() {
+            alert('submit!')
+        })
+    })
+
+    // <=> 
+    // 遇到 $(function () {...}) 的形式，牢记这是 document 对象的 ready 事件处理函数。
+    $(function() {
+        $('#testForm').submit(function() {
+            alert('submit!')
+        })
+    })
+    ```
+
+- **取消绑定**
+
+    一个已被绑定的事件可以解除绑定，通过 off('click', function) 实现
+    
+    off('click') 一次性移除已绑定的 click 事件的所有处理函数。
+    
+    同理，无参数调用 off() 一次性移除已绑定的所有类型的事件处理函数。
+
+- **手动触发一个事件 trigger()**
+
+    ``` JavaScript
+    var input = $('#test-input')
+    input.val('change it!')
+
+    input.change()  // 触发 change 事件
+    input.trigger('change')
+    ```
+
+- **浏览器安全限制**
+
+    在浏览器中，有些 JavaScript 代码只有在用户触发下才能执行，例如，window.open() 函数
 
 #### 6.4 动画
 
