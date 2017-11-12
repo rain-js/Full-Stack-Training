@@ -1805,6 +1805,7 @@ ul.append(function (index, html) {
 > 最大的优势是借助 JavaScript 天生的事件驱动机制加 V8 高性能引擎，使编写高性能 Web 服务轻而易举。其次，JavaScript 语言本身是完善的函数式语言，在前端开发时，开发人员往往写得比较随意，让人感觉 JavaScript 就是个“玩具语言”。但是，在 Node 环境下，通过模块化的 JavaScript 代码，加上函数式编程，并且无需考虑浏览器兼容性问题，直接使用最新的 ECMAScript 6 标准，可以完全满足工程上的需求。
 
 #### 9.1 安装 Node.js 和 npm
+![img](./img/nodeInstall.png)
 
 #### 9.2 第一个 Node 程序
 
