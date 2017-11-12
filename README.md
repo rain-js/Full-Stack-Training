@@ -1706,5 +1706,20 @@ ul.append(function (index, html) {
     ```
 
 #### 6.5 AJAX
+- ajax / get / post / getJSON
+    > 如果需要使用 JSONP，可以在 ajax() 中设置 jsonp: 'callback'，让 jQuery 实现 JSONP 跨域加载数据。
 
+- jQuery 的 jqXHR 对象类似一个 Promise 对象，我们可以用链式写法来处理各种回调
+    ``` JavaScript
+    var jqxhr = $.ajax('/api/categories', {
+        dataType: 'json'
+    }).done(function (data) {
+        ajaxLog('成功, 收到的数据: ' + JSON.stringify(data))
+    }).fail(function (xhr, status) {
+        ajaxLog('失败: ' + xhr.status + ', 原因: ' + status)
+    }).always(function () {
+        ajaxLog('请求完成: 无论成功或失败都会调用')
+    })
+    ```
+    
 #### 6.6 扩展
