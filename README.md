@@ -1659,6 +1659,51 @@ ul.append(function (index, html) {
     在浏览器中，有些 JavaScript 代码只有在用户触发下才能执行，例如，window.open() 函数
 
 #### 6.4 动画
+1. **show / hide / toggle**
+    > toggle() 方法则根据当前状态决定是 show() 还是 hide()
+
+2. **slideUp / slideDown / slideToggle**
+
+3. **fadeIn / fadeOut / fadeToggle**
+
+4. **animate**
+    > 自定义动画，需要传入的参数就是 DOM 元素最终的 CSS 状态和时间，还可以再传入一个函数，当动画结束时，该函数将被调用。
+    
+    ``` JavaScript
+    var div = $('#test-animate')
+    
+    div.animate({
+        opacity: 0.25,
+        width: '256px',
+        height: '256px'
+    }, 3000, function() {
+        console.log('动画结束')
+        $(this).css({
+            opacity: 1,
+            width: '128px',
+            height: '128px'
+        })
+        
+        // $(this).css('opcity','1.0').css('width','128px').css('height', '128px')
+    })
+    ```
+5. **delay**
+    ``` JavaScript
+    // 动画效果：slideDown - 暂停 - 放大 - 暂停 - 缩小
+    var div = $('#test-animates')
+    
+    div.slideDown(2000)
+        .delay(1000)
+        .animate({
+            width: '256px',
+            height: '256px',
+        }, 2000)
+        .delay(1000)
+        .animate({
+            width: '128px',
+            height: '128px',
+        }, 2000)
+    ```
 
 #### 6.5 AJAX
 
