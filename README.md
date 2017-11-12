@@ -1723,3 +1723,59 @@ ul.append(function (index, html) {
     ```
     
 #### 6.6 扩展
+- 编写一个 jQuery 插件的原则：
+
+    1. 给 $.fn 绑定函数，实现插件的代码逻辑；
+    
+    2. 插件函数最后要 return this; 以支持链式调用；
+    
+    3. 插件函数要有默认值，绑定在 $.fn.\<pluginName>.defaults 上；
+    
+    4. 用户在调用时可传入设定值以便覆盖默认值。
+    
+    ``` JavaScript
+    $.fn.highlight = function (options) {
+        // 合并默认值和用户设定值
+        var opts = $.extend({}, $.fn.highlight.defaults, options)
+        this.css(opts)
+        return this
+    }
+
+    // 设定默认值
+    $.fn.highlight.defaults = {
+        color: '#d85030',
+        backgroundColor: '#fff8de'
+    }
+    ```
+    > $.extend(target, obj1, obj2, ...)，它把多个 object 对象的属性合并到第一个 target 对象中，遇到同名属性，总是使用靠后的对象的值，也就是越往后优先级越高
+
+- 针对特定元素的扩展
+
+    > 借助 filter() 这个方法来实现针对特定元素的扩展
+    
+    > 给所有指向外链的超链接加上跳转提示
+    
+    ``` JavaScript
+    $.fn.external = function () {
+    
+    // return 返回的 each() 返回结果，支持链式调用
+    return this.filter('a').each(function () {
+    
+        // 注意: each() 内部的回调函数的 this 绑定为 DOM 本身!
+        var a = $(this)
+        var url = a.attr('href')
+        
+        if (url && (url.indexOf('http://')===0 || url.indexOf('https://')===0)) {
+            a.attr('href', '#0')
+                .removeAttr('target')
+                .append(' <i class="uk-icon-external-link"></i>')
+                .click(function () {
+                    if(confirm('你确定要前往' + url + '？')) {
+                        window.open(url);
+                    }
+                })
+            }
+        })
+    }
+    ```
+    
