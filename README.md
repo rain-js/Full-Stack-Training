@@ -1808,6 +1808,7 @@ ul.append(function (index, html) {
 ![img](./img/nodeInstall.png)
 
 #### 9.2 第一个 Node 程序
+![img](./img/nodeHello.png)
 
 #### 9.3 搭建 Node 开发环境
 
