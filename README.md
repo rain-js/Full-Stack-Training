@@ -1811,6 +1811,8 @@ ul.append(function (index, html) {
 ![img](./img/nodeHello.png)
 
 #### 9.3 搭建 Node 开发环境
+**Visual Studio Code**
+![img](./img/nodeHello2.png)
 
 #### 9.4 模块
 

@@ -1,3 +1,4 @@
 'use strict'
 
-console.log('hello world!')
+var name = 'rain'
+console.log(`hello ${name}`)
