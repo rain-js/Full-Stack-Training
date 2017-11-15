@@ -1851,6 +1851,25 @@ ul.append(function (index, html) {
 > crypto 模块的目的是为了提供通用的加密和哈希算法。
 
 #### 9.6 Web开发
+- 用 Node.js 开发 Web 服务器端，有几个显著的优势：
+
+    一是后端语言也是 JavaScript，以前掌握了前端 JavaScript 的开发人员，现在可以同时编写后端代码；
+
+    二是前后端统一使用 JavaScript，就没有切换语言的障碍了；
+
+    三是速度快，非常快！这得益于 Node.js 天生是异步的。
+
+- 在 Node.js 诞生后的短短几年里，出现了无数种 Web 框架、ORM 框架、模版引擎、测试框架、自动化构建工具
+
+    常见的 Web 框架包括：Express，Sails.js，koa，Meteor，DerbyJS，Total.js，restify……
+
+    ORM 框架比 Web 框架要少一些：Sequelize，ORM2，Bookshelf.js，Objection.js……
+
+    模版引擎 PK：Jade，EJS，Swig，Nunjucks，doT.js……
+
+    测试框架包括：Mocha，Expresso，Unit.js，Karma……
+
+    构建工具有：Grunt，Gulp，Webpack……
 
 #### 9.7 自动化工具
 
