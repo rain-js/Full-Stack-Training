@@ -1848,6 +1848,7 @@ ul.append(function (index, html) {
 ##### 9.5.3 http
 
 ##### 9.5.4 crypto
+> crypto 模块的目的是为了提供通用的加密和哈希算法。
 
 #### 9.6 Web开发
 
