@@ -1847,6 +1847,7 @@ ul.append(function (index, html) {
 
 ##### 9.5.3 http
 
+
 ##### 9.5.4 crypto
 > crypto 模块的目的是为了提供通用的加密和哈希算法。
 
@@ -1874,6 +1875,35 @@ ul.append(function (index, html) {
 ##### 9.6.1 koa
 
 ##### 9.6.2 mysql
+> 在关系数据库中，这种基于表（Table）的一对多的关系就是关系数据库的基础。
+
+- 数据库类别
+
+    1. 付费的商用数据库：
+
+        Oracle，典型的高富帅；
+
+        SQL Server，微软自家产品，Windows 定制专款；
+
+        DB2，IBM 的产品，听起来挺高端；
+
+        Sybase，曾经跟微软是好基友，后来关系破裂，现在家境惨淡。
+
+    2. 开源数据库：
+
+        **MySQL**，大家都在用，一般错不了；
+
+        PostgreSQL，学术气息有点重，其实挺不错，但知名度没有 MySQL 高；
+
+        sqlite，嵌入式数据库，适合桌面和移动应用。
+
+- 访问 MySQL
+
+    1. 访问 MySQL 数据库只有一种方法，就是通过网络发送 SQL 命令，然后，MySQL 服务器执行后返回结果。
+
+    2. 对于 Node.js 程序，访问 MySQL 也是通过网络发送 SQL 命令给 MySQL 服务器。这个访问 MySQL 服务器的软件包通常称为     **MySQL 驱动程序**。不同的编程语言需要实现自己的驱动，MySQL 官方提供了 Java、.Net、Python、Node.js、C++ 和 C 的驱动程序，官方的 Node.js 驱动目前仅支持 5.7 以上版本，而我们使用的命令行程序实际上用的就是 C 驱动。
+
+    3. 目前使用最广泛的 MySQL Node.js 驱动程序是开源的 **[mysql](https://www.npmjs.com/package/mysql)**，可以直接使用 **npm** 安装。
 
 ##### 9.6.3 mocha
 
