@@ -1850,7 +1850,7 @@ ul.append(function (index, html) {
 ##### 9.5.4 crypto
 > crypto 模块的目的是为了提供通用的加密和哈希算法。
 
-#### 9.6 Web开发
+#### 9.6 Web 开发
 - 用 Node.js 开发 Web 服务器端，有几个显著的优势：
 
     一是后端语言也是 JavaScript，以前掌握了前端 JavaScript 的开发人员，现在可以同时编写后端代码；
@@ -1870,6 +1870,18 @@ ul.append(function (index, html) {
     测试框架包括：Mocha，Expresso，Unit.js，Karma……
 
     构建工具有：Grunt，Gulp，Webpack……
+
+##### 9.6.1 koa
+
+##### 9.6.2 mysql
+
+##### 9.6.3 mocha
+
+##### 9.6.4 WebSocket
+
+##### 9.6.5 REST
+
+##### 9.6.6 MVVM
 
 #### 9.7 自动化工具
 
