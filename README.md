@@ -1913,6 +1913,46 @@ ul.append(function (index, html) {
 
 ##### 9.6.6 MVVM
 
+> MVVM 的设计思想：关注 Model 的变化，让 MVVM 框架去自动更新 DOM 的状态，从而把开发者从操作 DOM 的繁琐步骤中解脱出来！
+
+一个 MVVM 框架和 jQuery 操作 DOM 相比有什么区别？
+
+1. 用 jQuery 实现的修改两个 DOM 节点的例子
+
+    ```
+    <!-- HTML -->
+    <p>Hello, <span id="name">Bart</span>!</p>
+    <p>You are <span id="age">12</span>.</p>
+
+    'use strict'
+
+    var name = 'Homer'
+    var age = 51
+
+    $('#name').text(name)
+    $('#age').text(age)
+
+    // 执行代码并观察页面变化
+    ```
+
+2. 使用 MVVM 框架来实现同样的功能，我们首先并不关心 DOM 的结构，而是关心数据如何存储
+
+    ``` JavaScript
+    var person = {
+        name: 'Bart',
+        age: 12
+    }
+
+    'use strict'
+
+    person.name = 'Homer'
+    person.age = 51
+
+    // 执行代码并观察页面变化
+    ```
+
+> 我们把变量 person 看作 Model，把 HTML 某些 DOM 节点看作 View，并假定它们之间被关联起来了。要把显示的 name 从 Bart 改为 Homer，把显示的 age 从 12 改为 51，我们并不操作 DOM，而是直接修改 JavaScript 对象。执行上面的代码，我们惊讶地发现，改变 JavaScript 对象的状态，会导致 DOM 结构作出对应的变化！这让我们的关注点从如何操作 DOM 变成了如何更新 JavaScript 对象的状态，而操作 JavaScript 对象比 DOM 简单多了！
+
 #### 9.7 自动化工具
 
 #### 9.8 React
