@@ -1,0 +1,20 @@
+{
+  "name": "form-koa",
+  "version": "1.0.0",
+  "description": "form submit",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "form",
+    "post"
+  ],
+  "author": "rain",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.0.0",
+    "koa-bodyparser": "^3.2.0",
+    "koa-router": "^7.3.0"
+  }
+}
