@@ -1,34 +1,30 @@
 const koa = require('koa')
 const Router = require('koa-router')
 const bodyParser = require('koa-bodyparser')
+const fs = require('fs')
 
 const app = new koa
 const router = new Router
 
 app.use(bodyParser())
 
-router.get('/', async (ctx, next) => {
-    ctx.response.type = 'text/html'
-    ctx.response.body = `<h1>Form Submit</h1>
-        <form action="/signin" method="post">
-            <p>name: <input name="name" value="koa"></p>
-            <p>password: <input name="password" type="password"></p>
-            <p><input type="submit" value="submit"></p>
-        </form>
-    `
+const files = fs.readdirSync(`${__dirname}/controllers`)
+
+const jsFile = files.filter((f) => {
+    return f.endsWith('.js')
 })
 
-router.post('/signin', async (ctx, next) => {
-    const name = ctx.request.body.name || ''
-    const password = ctx.request.body.password || ''
+for (f of jsFile) {
+    const mapping = require(`${__dirname}/controllers/${f}`)
 
-    ctx.response.type = 'text/html'
-    if (name === 'koa' && password === 'admin') {
-        ctx.response.body = '<h1>Sign Success!</h1>'
-    } else {
-        ctx.response.body = '<h1>Sign faild!</h1>'
+    for (url in mapping) {
+        if (url.startsWith('GET ')) {
+            router.get(url.substring(4), mapping[url])
+        } else if (url.startsWith('POST ')) {
+            router.post(url.substring(5), mapping[url])
+        }
     }
-})
+}
 
 app.use(router.routes())
 
