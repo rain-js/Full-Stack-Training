@@ -1,0 +1,22 @@
+{
+  "name": "hear-me-type",
+  "version": "1.0.0",
+  "description": "Play a sound for every keyboard key that you press",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/Full-Stack-Training/hear-me-type",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "rain",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "~1.7.8"
+  }
+}
