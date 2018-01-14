@@ -6,16 +6,13 @@
   "scripts": {
     "start": "electron ."
   },
-  "repository": "https://github.com/Full-Stack-Training/hear-me-type",
+  "repository": "https://github.com/rain-js/Full-Stack-Training",
   "keywords": [
     "Electron",
-    "quick",
-    "start",
-    "tutorial",
     "demo"
   ],
   "author": "rain",
-  "license": "CC0-1.0",
+  "license": "",
   "devDependencies": {
     "electron": "~1.7.8"
   }
