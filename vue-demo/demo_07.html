@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>插值</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="app">
+        <p>using mustaches {{ rawHTML }}</p>
+        <p>using v-html directive <span v-html="rawHTML"></span></p>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                rawHTML: '<span style="color: red">This is should be red</span>'
+            }
+        })
+    </script>
+</body>
+</html>
