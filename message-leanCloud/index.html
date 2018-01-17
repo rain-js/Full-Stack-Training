@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>留言板</title>
+    <script src="//cdn1.lncld.net/static/js/3.5.0/av-min.js"></script>
+</head>
+<body>
+    <script>
+        var APP_ID = 'dMxhER0784MEae43sEDKJln0-gzGzoHsz';
+        var APP_KEY = '7PHq94tjHQNPeYiAtUDWiHaK';
+
+        AV.init({
+            appId: APP_ID,
+            appKey: APP_KEY
+        });
+
+        var TestObject = AV.Object.extend('TestObject');
+        var testObject = new TestObject();
+        testObject.save({
+            words: 'Hello World!'
+        }).then(function(object) {
+            alert('LeanCloud Rocks!');
+        })
+    </script>
+</body>
+</html>
