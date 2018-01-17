@@ -8,22 +8,37 @@
     <script src="//cdn1.lncld.net/static/js/3.5.0/av-min.js"></script>
 </head>
 <body>
+    <form action="" id="myForm">
+        <div><span>name:</span><input type="text" id="name"></div>
+        <div><span>message:</span><input type="text" id="message"></div>
+        <input type="submit" value="提交">
+    </form>
     <script>
-        var APP_ID = 'dMxhER0784MEae43sEDKJln0-gzGzoHsz';
-        var APP_KEY = '7PHq94tjHQNPeYiAtUDWiHaK';
+        var APP_ID = 'dMxhER0784MEae43sEDKJln0-gzGzoHsz'
+        var APP_KEY = '7PHq94tjHQNPeYiAtUDWiHaK'
 
         AV.init({
             appId: APP_ID,
             appKey: APP_KEY
-        });
-
-        var TestObject = AV.Object.extend('TestObject');
-        var testObject = new TestObject();
-        testObject.save({
-            words: 'Hello World!'
-        }).then(function(object) {
-            alert('LeanCloud Rocks!');
         })
+        
+        var myForm = document.querySelector('#myForm')
+        myForm.addEventListener('submit', function(e) {
+            e.preventDefault()
+
+            var name = document.querySelector('#name').value
+            var message = document.querySelector('#message').value
+            
+            var TestObject = AV.Object.extend('TestObject')
+            var testObject = new TestObject()
+            testObject.save({
+                name: name,
+                message: message
+            }).then(function(object) {
+                alert('发送评论成功!')
+            })
+        })
+       
     </script>
 </body>
 </html>
