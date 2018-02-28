@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>实例属性与方法</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<id id="example"> {{a}}</id>
+
+	<script>
+		var data = {a: 1}
+
+		var vm = new Vue({
+			el: '#example',
+			data: data
+		})
+
+		vm.$el === document.getElementById('example')	// true
+
+		vm.$data === data	// true
+
+		vm.$watch('a', function(newValue, oldValue) {
+			console.log(`newValue = ${newValue}; oldValue = ${oldValue}`)
+		})
+	</script>
+</body>
+</html>
