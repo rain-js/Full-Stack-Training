@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> computed prop </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="app">
+        <form action="">
+            <div>
+                firstName: <input type="text" name="firstName" v-model="firstName">
+            </div>
+            <div>
+                lastName: <input type="text" name="lastName" v-model="lastName">    
+            </div>
+            <div>
+                fullName: <span style="color: red;"> {{ fullName }}</span>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                firstName: '',
+                lastName: ''
+            },
+            computed: {
+                fullName: {
+                    get: function() {
+                        return this.firstName + ' ' + this.lastName
+                    },
+                    // app.fullName = 'Dennis Ritchie'
+                    set: function(value) {
+                        var arr = value.split(' ')
+                        this.firstName = arr[0]
+                        this.lastName = arr[1]
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
