@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> Class </title>
+    <style>
+        .normal {
+            font-size: 20px;
+        }
+        .active {
+            font-size: 26px;
+            color: blue;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="app">
+        <div class="normal" v-bind:class="{ active: isActive }"
+            v-on:mouseover="isActive = true" v-on:mouseout="isActive = false">Hello world</div>
+    </div>
+    
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                isActive: false
+            }
+        })
+    </script>
+</body>
+</html>
