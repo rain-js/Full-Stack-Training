@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> v-show </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="app">
+        <p v-show="ok">Hello world</p>
+        <button type="button" @click="toggleStatus">Toggle Button</button>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                ok: true
+            },
+            methods: {
+                toggleStatus: function() {
+                    this.ok = !this.ok
+                }
+            }
+        })
+    </script>
+</body>
+</html>
