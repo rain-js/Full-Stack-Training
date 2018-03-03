@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> key </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="app">
+        <div v-if="loginType === 'username'">
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Enter your username" key="username-input">
+        </div>
+        <div v-else>
+            <label for="email">Email</label>
+            <input type="text" id="email" placeholder="Enter your email" key="email-input">
+        </div>
+        <button type="button" @click="toggleLoginType">Toggle login type</button>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                loginType: 'username'
+            },
+            methods: {
+                toggleLoginType: function() {
+                    console.log(1)
+                    this.loginType = this.loginType === 'username' ? 'email' : 'username'
+                }
+            }
+        })
+    </script>
+</body>
+</html>
