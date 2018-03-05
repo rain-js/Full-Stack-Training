@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> v-model select </title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <select name="" id="" v-model="selectValue">
+            <option disabled value="">请选择</option>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+        </select>
+        <br>
+        <span>selectValue: {{ selectValue }}</span>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                selectValue: ''
+            }
+        })
+    </script>
+</body>
+</html>
