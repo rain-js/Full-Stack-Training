@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> Component </title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="parentMsg">
+        <br>
+        <child v-bind:message="parentMsg"></child>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                parentMsg: 'Hello Vue.js'
+            },
+            components: {
+                child: {
+                    props: ['message'],
+                    template: '<span>{{ message }}</span>'
+                }
+            }  
+        })
+    </script>
+</body>
+</html>
