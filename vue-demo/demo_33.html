@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> Component </title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{ total}}</p>
+        <button-counter @increment="incrementTotal"></button-counter>
+        <button-counter @increment="incrementTotal"></button-counter>
+    </div>
+
+    <script>
+    Vue.component('button-counter', {
+        template: `
+            <button @click="incrementCounter">{{ counter }}</button>
+        `,
+        data: function() {
+            return {
+                counter: 0
+            }
+        },
+        methods: {
+            incrementCounter: function() {
+                this.counter++
+                this.$emit('increment')
+            }
+        }
+    })
+    new Vue({
+        el: '#app',
+        data: {
+            total: 0
+        },
+        methods: {
+            incrementTotal: function() {
+                this.total++
+            }
+        }
+    })
+    </script>
+</body>
+</html>
