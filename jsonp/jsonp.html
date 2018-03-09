@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title> jsonp </title>
+</head>
+<body>
+	<script>
+		function jsonpCallback(response) {
+			console.log(response.result)
+		}
+
+		var script = document.createElement('script')
+		script.src =  '//suggest.taobao.com/sug?code=utf-8&q=玩具&callback=jsonpCallback'
+		document.body.appendChild(script)
+	</script>
+</body>
+</html>
