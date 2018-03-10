@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> transition </title>
+    <style>
+        .bounce-enter-active {
+            animation: bounce-in .5s;
+        }
+        .bounce-leave-active {
+            animation: bounce-in .5s reverse;
+        }
+        @keyframes bounce-in {
+            0% {
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1.5);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button type="button" @click="toggle">Bounce Show</button>
+        <transition name="bounce">
+            <p v-show="show">Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+            Mauris facilisis enim libero, at lacinia diam fermentum id. Pellentesque 
+            habitant morbi tristique senectus et netus.</p>        
+        </transition>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                show: true,
+            },
+            methods: {
+                toggle: function() {
+                    this.show = !this.show
+                },
+            }
+        })
+    </script>
+</body>
+</html>
