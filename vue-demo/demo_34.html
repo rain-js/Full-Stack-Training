@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> Component </title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <my-component v-bind:prop-a="168" prop-b="Hello Vue.js" prop-c="200"></my-component>
+    </div>
+    <script>
+        Vue.component('my-component', {
+            props: {
+                propA: Number,
+                propB: String,
+                propC: {
+                    validator: function(value) {
+                        console.log(`value = ${value}`)
+                        return value > 100
+                    }
+                }
+            },
+            template: `
+                <span>{{ propA + ' ' + propB }}</span>
+            `,
+        })
+        new Vue({
+            el: '#app',
+        })
+    </script>
+</body>
+</html>
