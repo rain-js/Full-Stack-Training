@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> directives </title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <span>Default input</span>
+        <input type="text">
+        <br>
+        <span>Add v-focus</span>
+        <my-component></my-component>
+    </div>
+
+    <script>
+        Vue.directive('focus', {
+            inserted: function(el) {
+                console.log('sdfsdf')
+                el.focus()
+            }
+        })
+        
+        Vue.component('my-component', {
+            template: `
+                <input v-focus>
+            `
+        })
+        new Vue({
+            el: '#app'
+        })
+    </script>
+</body>
+</html>
