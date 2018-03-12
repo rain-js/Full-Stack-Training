@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> filter </title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model:value="msg">
+        <p>{{ msg | capitalize }}</p>
+    </div>
+
+    <script>
+        Vue.filter('capitalize', function(value) {
+            if (!value) return ''
+            value = value.toString()
+            return value.charAt(0).toUpperCase() + value.slice(1)
+        })
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: '',
+            },
+        })
+    </script>
+</body>
+</html>
