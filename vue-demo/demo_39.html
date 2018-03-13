@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> 响应式原理 </title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>vm.a = {{ a }}</p>
+        <p>vm.b = {{ b }}</p>
+        <p>vm.someObject.c = {{ someObject.c }}</p>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                a: 1,
+                someObject: {}
+            }
+        })
+        
+        // vm.b 是非响应的
+        vm.b = 2
+        // $set 将响应属性添加到嵌套的对象
+        vm.$set(vm.someObject, 'c', 3)
+    </script>
+</body>
+</html>
