@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> mixins </title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <popup></popup>
+        <br>
+        <tooltip></tooltip>
+    </div>
+    <script>
+        Vue.component('popup', {
+            template: `
+                <div>
+                    <div @click="toggle">Welcome</div>
+                    <div v-if="visible">Hello Vue.js</div>
+                </div>
+            `,
+            data: function() {
+                return {
+                    visible: false,
+                }
+            },
+            methods: {
+                toggle: function() {
+                    this.visible = !this.visible
+                },
+            }
+        })
+        Vue.component('tooltip', {
+            template: `
+                <div>
+                    <div @mouseover="show" @mouseleave="hide">Hover here</div>
+                    <div v-if="visible">Wow! It's amazing</div>
+                </div>
+            `,
+            methods: {
+                show: function() {
+                    this.visible = true
+                },
+                hide: function() {
+                    this.visible = false
+                }
+            },
+            data: function() {
+                return {
+                    visible: false,
+                }
+            }
+        })
+        new Vue({
+            el: '#app'
+        })
+    </script>
+</body>
+</html>
