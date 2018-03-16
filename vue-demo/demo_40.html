@@ -14,13 +14,7 @@
         <tooltip></tooltip>
     </div>
     <script>
-        Vue.component('popup', {
-            template: `
-                <div>
-                    <div @click="toggle">Welcome</div>
-                    <div v-if="visible">Hello Vue.js</div>
-                </div>
-            `,
+        var base = {
             data: function() {
                 return {
                     visible: false,
@@ -30,7 +24,22 @@
                 toggle: function() {
                     this.visible = !this.visible
                 },
+                show: function() {
+                    this.visible = true
+                },
+                hide: function() {
+                    this.visible = false
+                }
             }
+        }
+        Vue.component('popup', {
+            template: `
+                <div>
+                    <div @click="toggle">Welcome</div>
+                    <div v-if="visible">Hello Vue.js</div>
+                </div>
+            `,
+            mixins: [base]
         })
         Vue.component('tooltip', {
             template: `
@@ -39,21 +48,9 @@
                     <div v-if="visible">Wow! It's amazing</div>
                 </div>
             `,
-            methods: {
-                show: function() {
-                    this.visible = true
-                },
-                hide: function() {
-                    this.visible = false
-                }
-            },
-            data: function() {
-                return {
-                    visible: false,
-                }
-            }
+            mixins: [base]
         })
-        new Vue({
+        var app = new Vue({
             el: '#app'
         })
     </script>
