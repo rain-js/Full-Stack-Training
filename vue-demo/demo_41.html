@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> slot </title>
+    
+    <style>
+        .panel {
+            width: 350px;
+            border: 2px solid #999;
+            margin-bottom: 20px;
+        }
+        .panel > * {
+            padding: 10px;
+        }
+        .panel .header {
+            border-bottom: 2px solid #999;
+        }
+        .panel .content {
+            border-bottom: 2px solid #999;
+        }
+    </style>
+</head>
+<body>
+    <template id="panel">
+            <div class="panel">
+                <div class="header">
+                    <slot name="header">header</slot>
+                </div>
+                <div class="content">
+                    <slot name="content">content</slot>
+                </div>
+                <div class="footer">
+                    <slot name="footer">footer</slot>
+                </div>
+            </div>
+    </template>
+    <div id="app">
+        <v-panel></v-panel>
+        <v-panel>
+            <div slot="header">Yo.</div>
+            <div slot="content">That first winter, it rains and rains as if we have moved to some foreign place, away from the desert; it rains and it rains, and the water comes up to the back step and I think it will enter the house.
+            </div>
+            <div slot="footer">更多信息</div>
+        </v-panel>
+        <v-panel></v-panel>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+        Vue.component('v-panel', {
+            template: '#panel'
+        })
+        new Vue({
+            el: '#app',
+        })
+    </script>
+</body>
+</html>
