@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> 迭代器 </title>
+</head>
+<body>
+    <script>
+        // 迭代器
+        // next() 返回一个对象,含有 value 和 done
+        function createIterator() {
+            let _value = 0
+            let maxValue = 10
+
+            return {
+                next: function() {
+                    _value++
+                    if (_value > maxValue) {
+                        throw Error('It is done.')
+                    } else if (_value === maxValue) {
+                        return {
+                            value: _value,
+                            done: true
+                        }
+                    } else {
+                        return {
+                            value: _value,
+                            done: false 
+                        }
+                    }
+                }
+            }
+        }
+        
+        let iterator = createIterator()
+    </script>
+</body>
+</html>
