@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> 自定义的可迭代对象 </title>
+</head>
+<body>
+    <script>
+        // 可迭代
+        // 可通过 for of 进行迭代
+        let myIterator = {}
+
+        myIterator[Symbol.iterator] = function* (){
+            yield 1
+            yield 2
+            yield 3
+        }
+
+        for(let value of myIterator) {
+            console.log(value)
+        }
+    </script>
+</body>
+</html>
