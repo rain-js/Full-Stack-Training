@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> render </title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ele></ele>
+    </div>
+    <script>
+        Vue.component('ele', {
+            render: function(createElement) {
+                return createElement('h1', this.blogTitle)
+            },
+            data: function() {
+                return {
+                    blogTitle: "rain's blog"
+                }
+            }
+        })
+        new Vue({
+            el: '#app'
+        })
+    </script>
+</body>
+</html>
