@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Promise</title>
+</head>
+<body>
+    <script>
+        // 从回调地狱到 Promise
+        function fn1() {
+           return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    console.log(1)
+                    resolve()
+                }, 1000);
+            })
+        }
+
+        function fn2() {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    console.log(2)
+                    resolve()
+                }, 1000)
+            })
+        }
+
+        function fn3() {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    console.log(3)
+                    resolve()
+                }, 1000)
+            })
+        }
+
+        fn1().then(() => {
+            return fn2()        // 返回一个 Promise， 以便继续调用 then
+        }).then(() => {
+            return fn3()
+        }).catch((e) => {
+            console.log(`Something Error... ${e}`)
+        })
+        
+        /*
+        function fn1(callback) {
+            setTimeout(function() {
+                console.log(1)
+                callback()
+            }, 1000)
+        }
+
+        function fn2(callback) {
+            setTimeout(function() {
+                console.log(2)
+                callback()
+            }, 1000)
+        }
+
+        function fn3() {
+            setTimeout(function() {
+                console.log(3)
+            }, 1000)
+        }
+
+        fn1(function() {
+            fn2(function() {
+                fn3()
+            })
+        })*/
+    </script>
+</body>
+</html>
