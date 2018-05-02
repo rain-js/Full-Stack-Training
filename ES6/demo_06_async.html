@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>async</title>
+</head>
+<body>
+    <script>
+        function timeout(ms) {
+            return new Promise(function(resolve, reject) {
+                setTimeout(function() {
+                    resolve()
+                }, ms)
+            })
+        }
+
+        async function delayPrint(value, ms) {
+            console.log(`Delay Print ${ms} ms...`)
+            await timeout(ms)
+            console.log(value)
+        }
+
+        // async 函数返回的是 Promise 对象
+        delayPrint('hello world', 1000).then(function() {
+            delayPrint('hello async', 2000)
+        })
+        
+    </script>
+</body>
+</html>
