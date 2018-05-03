@@ -26,11 +26,23 @@
         var option = option ? option : {},
             method = option.method ? option.method : 'GET',
             url = option.url ? option.url: '',
-            success = option.success,
-            fail = option.fail
+            success = option.success || function() {},
+            fail = option.fail || function() {},
+			data = option.data || {}
+			dataStr = ''
+
+		// name='rain'&password='123'
+		for(let key in data) {
+				dataStr += `${key}=${data[key]}&`
+		}
+		// 去掉最后 & 符号
+		dataStr = dataStr.substring(0, dataStr.length-1)
+
+		// console.log(`url = ${url}`)
+		// console.log(`dataStr = ${dataStr}`)
 
         var xhr = new XMLHttpRequest()
-        xhr.open(method, url)
+
         xhr.onreadystatechange = function() {
             if(xhr.readyState == 4) {
                 if((xhr.status >= 200 && xhr.status < 300) || (xhr.status == 304)) {
@@ -41,11 +53,19 @@
         xhr.onerror = function(e) {
             fail(e)
         }
-        xhr.send(null)
+
+		if(method.toLowerCase() === 'get') {
+		    xhr.open(method, url+'?'+dataStr, true)
+			xhr.send(null)
+		} else if (method.toLowerCase() === 'post') {
+			xhr.open(method, url, true)
+			xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+			xhr.send(dataStr)
+		}
     }
     var urls = ['https://easy-mock.com/mock/5ac2f80c3d211137b3f2843a/promise/getIp',
-        'https://easy-mock.com/mock/5ac2f80c3d211137b3f2843a/promise/getCityFromIp?ip=',
-        'https://easy-mock.com/mock/5ac2f80c3d211137b3f2843a/promise/getWeatherFromCity?city=']
+        'https://easy-mock.com/mock/5ac2f80c3d211137b3f2843a/promise/getCityFromIp',
+        'https://easy-mock.com/mock/5ac2f80c3d211137b3f2843a/promise/getWeatherFromCity']
 
     function getIP() {
         return new Promise((resolve, reject) => {
@@ -64,7 +84,10 @@
     function getCityFromIp(ip) {
         return new Promise((resolve, reject) => {
             ajax({
-                url: `${urls[1]+ip}`,
+                url: urls[1],
+                data: {
+                	ip: ip
+                },
                 success: function(responseText) {
                     resolve(JSON.parse(responseText).city)
                 },
@@ -78,7 +101,10 @@
     function getWeatherFromCity(city) {
         return new Promise((resolve, reject) => {
             ajax({
-                url: `${urls[2]+city}`,
+                url: urls[2],
+                data: {
+                	city: city
+                },
                 success: function(responseText) {
                     console.log(`weather = ${JSON.parse(responseText).weather}`)
                     resolve(JSON.parse(responseText).weather)
