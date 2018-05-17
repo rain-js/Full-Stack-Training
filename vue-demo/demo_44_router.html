@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>Hello vue-router</h1>
+        <p>
+			<router-link to="/index">To index</router-link>
+            <router-link to="/Foo">To Foo</router-link>
+            <router-link to="/Bar">To Bar</router-link>
+        </p>
+
+        <router-view></router-view>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script src="./vue-router.js"></script>
+
+    <script>
+        let index = {template: '<div>hello index</div>'}
+			foo = {template: '<div>hello foo</div>'},
+            bar = {template: '<div>hello bar</div>'}
+        
+        let router = new VueRouter({
+            routes: [
+				{path: '/index', component: index},
+                {path: '/Foo', component: foo},
+                {path: '/Bar', component: bar},
+            ]
+        })
+
+        let app = new Vue({
+            router
+        }).$mount('#app')
+    </script>
+</body>
+</html>
