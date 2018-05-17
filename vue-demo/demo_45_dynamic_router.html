@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>Vue Dynamic Router</h1>
+        <p>
+            <router-link to="/user/kitty">To kitty</router-link>
+            <router-link to="/user/michael">To michael</router-link>
+        </p>
+        <router-view></router-view>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script src="./vue-router.js"></script>
+    <script>
+        
+        let router = new VueRouter({
+            routes: [
+                {
+                    path: '/user/:username',
+                    component: {
+                        template: '<div>hello {{ $route.params.username }}</div>'
+                    }
+                }
+            ]
+        })
+        let app = new Vue({
+            router
+        }).$mount('#app')
+    </script>
+</body>
+</html>
