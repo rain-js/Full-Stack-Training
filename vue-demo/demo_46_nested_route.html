@@ -10,8 +10,7 @@
     <div id="app">
         <h1>Nested Route</h1>
         <router-link to="/User/Kitty">/User/Kitty</router-link>
-        <router-link to="/User/Kitty/profile">/User/Kitty/profile</router-link>
-        <router-link to="/User/Kitty/posts">/User/Kitty/posts</router-link>
+        <router-link to="/User/Michael">/User/Michael</router-link>
 
         <router-view></router-view>
     </div>
@@ -24,6 +23,8 @@
             template: `
                     <div>
                         <h1>hello {{ username }}</h1>
+                        <router-link :to="'/User/'+this.username+'/profile'">{{ this.username}} 's Profile</router-link>
+                        <router-link :to="'/User/'+this.username+'/posts'">{{ this.username}} 's Posts</router-link>
                         <router-view></router-view>
                     </div>
                 `
