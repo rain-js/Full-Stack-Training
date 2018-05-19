@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>Nested Route</h1>
+        <router-link to="/User/Kitty">/User/Kitty</router-link>
+        <router-link to="/User/Kitty/profile">/User/Kitty/profile</router-link>
+        <router-link to="/User/Kitty/posts">/User/Kitty/posts</router-link>
+
+        <router-view></router-view>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script src="./vue-router.js"></script>
+    <script>
+        let User = {
+            props: ['username'],
+            template: `
+                    <div>
+                        <h1>hello {{ username }}</h1>
+                        <router-view></router-view>
+                    </div>
+                `
+        }
+        let userProfile = {
+            template: `
+                <div>{{ $route.params.username }} Profile </div>
+            `
+        }
+        let userPosts = {
+            template: `
+                <div>{{ $route.params.username }} Posts </div>
+            `
+        }
+        let router = new VueRouter({
+            routes: [{
+                path: '/User/:username',
+                component: User,
+                props: true,
+                // redirect: '/User/:username/profile',
+                children: [
+                    { path: 'profile', component: userProfile },
+                    { path: 'posts', component: userPosts }
+                ]
+            }]
+        })
+        let app = new Vue({
+            el: '#app',
+            router
+        })
+    </script>
+</body>
+</html>
